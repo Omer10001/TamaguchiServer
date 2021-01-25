@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 
 namespace TamaguchiServer
 {
+    //test
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
