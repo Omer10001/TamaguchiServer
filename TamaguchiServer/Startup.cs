@@ -22,7 +22,7 @@ namespace TamaguchiServer
         {
             Configuration = configuration;
         }
-
+        // JINBUIUGJGHOIGJY OIJGTIORDJT GIIJGUIHRE9-IGNR9IUGHUFIRBFG098ITRNOIEHGUHRJOIOTHRIOTNIROJGJKDFNGJFDNGOKFDNFJFNGIOKFDNGOIGFNVJKKFDNGIUPHDREH
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
