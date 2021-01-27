@@ -64,8 +64,7 @@ namespace TamaguchiServer
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TamaguchiServer v1"));
+               
             }
 
             app.UseHttpsRedirection();

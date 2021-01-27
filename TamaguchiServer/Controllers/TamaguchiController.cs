@@ -8,7 +8,7 @@ using TamaguchiBL.Models;
 
 namespace TamaguchiServer.Controllers
 {
-    [Route("api")]
+    [Route("api/")]
     [ApiController]
     public class TamaguchiController : ControllerBase
     {
@@ -17,14 +17,15 @@ namespace TamaguchiServer.Controllers
         {
             this.context = context;
         }
+        [Route("test")]
+        [HttpGet]
+        public string Test()
+        {
+            return "hello world";
+        }
     }
-    //[Route("test")]
-    //[HttpGet]
-    //public void Test()
-    //{
-        
-    //}
-        
+   
+
 
 
 }
