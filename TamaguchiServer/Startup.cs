@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TamaguchiBL.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace TamaguchiServer
 {
@@ -20,7 +23,7 @@ namespace TamaguchiServer
         {
             Configuration = configuration;
         }
-        // JINBUIUGJGHOIGJY OIJGTIORDJT GIIJGUIHRE9-IGNR9IUGHUFIRBFG098ITRNOIEHGUHRJOIOTHRIOTNIROJGJKDFNGJFDNGOKFDNFJFNGIOKFDNGOIGFNVJKKFDNGIUPHDREH
+        
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -28,10 +31,29 @@ namespace TamaguchiServer
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "TamaguchiServer", Version = "v1" });
+            //});
+            #region Add Session support
+            //The following two commands set the Session state to work!
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TamaguchiServer", Version = "v1" });
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
             });
+            #endregion
+
+            #region Add DB Context Support
+            string connectionString = this.Configuration.GetConnectionString("TamaguchiDB");
+
+            services.AddDbContext<TamaguchiContext>(options => options
+                                                                .UseLazyLoadingProxies()
+                                                                .UseSqlServer(connectionString));
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +71,10 @@ namespace TamaguchiServer
             app.UseRouting();
 
             app.UseAuthorization();
+            #region Session support
+            //Tells the application to use Session!
+            app.UseSession();
+            #endregion
 
             app.UseEndpoints(endpoints =>
             {

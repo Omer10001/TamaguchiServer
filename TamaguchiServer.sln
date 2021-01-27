@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TamaguchiServer", "TamaguchiServer\TamaguchiServer.csproj", "{F9969362-6240-4B69-8FB9-3AD3D9E779AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TamaguchiServer", "TamaguchiServer\TamaguchiServer.csproj", "{F9969362-6240-4B69-8FB9-3AD3D9E779AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TamaguchiBL", "TamaguchiBL\TamaguchiBL.csproj", "{A0085295-5E81-414E-A4FC-854EFA3F6880}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F9969362-6240-4B69-8FB9-3AD3D9E779AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9969362-6240-4B69-8FB9-3AD3D9E779AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9969362-6240-4B69-8FB9-3AD3D9E779AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0085295-5E81-414E-A4FC-854EFA3F6880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0085295-5E81-414E-A4FC-854EFA3F6880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0085295-5E81-414E-A4FC-854EFA3F6880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0085295-5E81-414E-A4FC-854EFA3F6880}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
