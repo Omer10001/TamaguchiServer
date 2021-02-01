@@ -23,6 +23,7 @@ namespace TamaguchiServer.Controllers
         {
             return "hello world";
         }
+        
     }
    
 
