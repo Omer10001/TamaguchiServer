@@ -23,7 +23,13 @@ namespace TamaguchiServer.Controllers
         {
             return "hello world";
         }
-        
+        [Route("GetExListByType")]
+        [HttpGet]
+        public async Task<List<Exercise>> GetExByType([FromQuery] int typeID)
+        {
+
+        }
+
     }
    
 
