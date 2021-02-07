@@ -71,8 +71,6 @@ namespace TamaguchiBL.Models
         }
         public Pet GetCurrentPetInfo(int playerID)
         {
-
-
             return this.Pets.Include(x => x.Player).Include(x => x.LifeCycleStage).Include(x => x.HealthStatus).Where(a => a.PlayerId == playerID).FirstOrDefault();
         }
         public void UpdatePlayerMethodHistory(Pet p, Player a, Exercise e)
