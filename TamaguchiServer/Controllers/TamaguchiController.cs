@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TamaguchiBL.Models;
+using TamaguchiServer.DataTransferObjects;
 
 namespace TamaguchiServer.Controllers
 {
@@ -25,8 +26,33 @@ namespace TamaguchiServer.Controllers
         }
         [Route("GetExListByType")]
         [HttpGet]
-        public async Task<List<Exercise>> GetExByType([FromQuery] int typeID)
+        public List<ExerciseDTO> GetExByType([FromQuery] int typeID)
         {
+            try
+            {
+                List<Exercise> exList = this.context.ExercisesByType(typeID);
+                if (exList != null)
+                {
+                    List<ExerciseDTO> exListDto = new List<ExerciseDTO>();
+                    foreach (Exercise ex in exList)
+                    {
+                        exListDto.Add(new ExerciseDTO(ex));
+                    }
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                    return exListDto;
+                }
+                else
+                {
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.NotFound;
+                    return null;
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
 
         }
 
