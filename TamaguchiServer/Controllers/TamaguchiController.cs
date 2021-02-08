@@ -60,6 +60,27 @@ namespace TamaguchiServer.Controllers
         public void DoExercise([FromBody])
         {
 
+        [HttpPost] 
+        public void DoExercise([FromBody] ExerciseDTO exDTO)
+        {
+            try
+            {
+                PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+                //Check if user logged in!
+                if (pDto != null)
+                {
+                    Exercise ex = context.Exercises.Where(x => x.ExerciseId == exDTO.ExerciseId).FirstOrDefault();
+                    Player p = context.Players.Where(pl => pl.PlayerId == pDto.PlayerId).FirstOrDefault();
+                    p.CurrentPet.DoExersice(ex);
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                }
+                else
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.NotFound;
+            }
+            catch (Exception e)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+            }
         }
 
         [Route("AddAnimal")]
