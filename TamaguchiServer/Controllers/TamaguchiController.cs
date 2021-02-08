@@ -47,7 +47,7 @@ namespace TamaguchiServer.Controllers
                     return null;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
@@ -56,11 +56,28 @@ namespace TamaguchiServer.Controllers
 
         }
         [Route("DoExercise")]
-        [HttpPost] 
+        [HttpPost]
         public void DoExercise([FromBody])
         {
-             
+
         }
+
+        [Route("AddAnimal")]
+        [HttpPost]
+        public void AddAnimal([FromBody] PetDTO pDTO, [FromBody] int playerID)
+        {
+            
+            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+            
+            
+            Pet newAnimal = context.Pets.Where(x => x.PetId == pDTO.PetId).FirstOrDefault();
+            List<PetDTO> petListDTO = new List<PetDTO>();
+
+            
+
+
+        }
+
 
     }
    
