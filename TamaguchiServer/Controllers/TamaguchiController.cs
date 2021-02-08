@@ -71,11 +71,11 @@ namespace TamaguchiServer.Controllers
                     Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
                 }
                 else
-                    Response.StatusCode = (int)System.Net.HttpStatusCode.NotFound;
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
             }
             catch (Exception e)
             {
-                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                Response.StatusCode = (int)System.Net.HttpStatusCode.NotFound;
             }
         }
 
