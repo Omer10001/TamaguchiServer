@@ -57,7 +57,7 @@ namespace TamaguchiServer.Controllers
         }
         [Route("DoExercise")]
         [HttpPost] 
-        public void DoExercise()
+        public void DoExercise([FromBody])
         {
              
         }
