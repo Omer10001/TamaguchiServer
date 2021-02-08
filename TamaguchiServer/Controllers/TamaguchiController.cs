@@ -55,11 +55,8 @@ namespace TamaguchiServer.Controllers
             }
 
         }
-        [Route("DoExercise")]
-        [HttpPost]
-        public void DoExercise([FromBody])
-        {
-
+        [Route("DoExercise")]     
+  
         [HttpPost] 
         public void DoExercise([FromBody] ExerciseDTO exDTO)
         {
@@ -85,6 +82,7 @@ namespace TamaguchiServer.Controllers
 
         [Route("AddAnimal")]
         [HttpPost]
+
         public void AddAnimal([FromBody] PetDTO pDTO, [FromBody] int playerID)
         {
             
