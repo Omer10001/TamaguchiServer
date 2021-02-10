@@ -11,10 +11,8 @@ namespace TamaguchiBL.Models
     {
         public Player Login(string email, string pswd)
         {
-
             ; try
             {
-
                 Player p = this.Players.Where((p => p.Email == email && p.UserPassword == pswd)).FirstOrDefault();
                 return p;
             }
@@ -37,17 +35,11 @@ namespace TamaguchiBL.Models
                 HappinessLevel = 80,
                 HealthStatusId = 1,
                 LifeCycleStageId = 1,
-
-
-
             };
-
-            this.Pets.Add(pet);
-            
+            this.Pets.Add(pet);           
             this.SaveChanges();
             this.Players.Where(x => x.PlayerId == playerId).FirstOrDefault().CurrentPetId = pet.PetId;
             this.SaveChanges();
-
         }
         public void CreateUser(string firstName, string lastName, string eMali, string gender, DateTime birthDate, string userName, string userPassword)
         {
@@ -83,10 +75,6 @@ namespace TamaguchiBL.Models
                 MethodDate = DateTime.Now,
                 PetAge = p.Age,
                 PetLifeCycleStageId = p.LifeCycleStageId
-
-
-
-
             };
             this.PlayerMethodsHistories.Add(r);
             this.SaveChanges();
