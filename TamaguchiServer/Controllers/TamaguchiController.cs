@@ -89,14 +89,13 @@ namespace TamaguchiServer.Controllers
             {
                 PlayerDTO pDTO = new PlayerDTO(p);
 
-                HttpContext.Session.
+                HttpContext.Session.SetObject("player", pDTO);
 
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
                 return pDTO;
             }
             else
             {
-
                 Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
                 return null;
             }
@@ -133,6 +132,11 @@ namespace TamaguchiServer.Controllers
             
 
 
+        public void AddAnimal([FromBody] PetDTO pDTO, [FromBody] int playerID)
+        {           
+            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+            Pet newAnimal = context.Pets.Where(x => x.PetId == pDTO.PetId).FirstOrDefault();
+            List<PetDTO> petListDTO = new List<PetDTO>();
         }
 
 
