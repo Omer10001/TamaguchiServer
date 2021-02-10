@@ -21,14 +21,19 @@ namespace TamaguchiBL.Models
                 throw new Exception("Could not Login. error retreiving Data", e);
             }
         }
-        public void CreateAnimal(string petName, int playerId, int petWeight)
+        public void CreateAnimal(string petName, int playerId)
         {
+            Random r = new Random();
+            
+
+            
+
             Pet pet = new Pet
             {
                 PetName = petName,
                 PlayerId = playerId,
                 BirthDate = DateTime.Now,
-                PetWeight = petWeight,
+                PetWeight = r.Next(20, 320),
                 Age = 0,
                 HungerLevel = 80,
                 CleanLevel = 80,

@@ -102,6 +102,35 @@ namespace TamaguchiServer.Controllers
 
         [Route("AddAnimal")]
         [HttpPost]
+
+        public void AddAnimal([FromBody] PetDTO petDTO)
+        {
+
+
+            
+            PlayerDTO playerDTO = HttpContext.Session.GetObject<PlayerDTO>("player");
+            if (playerDTO != null)
+            {
+
+                this.context.CreateAnimal(petDTO.PetName,playerDTO.PlayerId);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+
+
+            }
+            else
+            {
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return;
+
+            }
+
+                       
+            
+            
+            
+
+
         public void AddAnimal([FromBody] PetDTO pDTO, [FromBody] int playerID)
         {           
             PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
