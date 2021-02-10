@@ -96,7 +96,6 @@ namespace TamaguchiServer.Controllers
             }
             else
             {
-
                 Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
                 return null;
             }
@@ -104,19 +103,11 @@ namespace TamaguchiServer.Controllers
 
         [Route("AddAnimal")]
         [HttpPost]
-
         public void AddAnimal([FromBody] PetDTO pDTO, [FromBody] int playerID)
-        {
-            
+        {           
             PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
-            
-            
             Pet newAnimal = context.Pets.Where(x => x.PetId == pDTO.PetId).FirstOrDefault();
             List<PetDTO> petListDTO = new List<PetDTO>();
-
-            
-
-
         }
 
 
