@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TamaguchiBL.Models;
 using TamaguchiServer.DataTransferObjects;
 
@@ -60,6 +61,27 @@ namespace TamaguchiServer.Controllers
         public void DoExercise()
         {
              
+        }
+        public PlayerDTO Login([FromQuery] string email, [FromQuery] string pass)
+        {
+            Player p = context.Login(email, pass);
+
+            //Check user name and password
+            if (p != null)
+            {
+                PlayerDTO pDTO = new PlayerDTO(p);
+
+                HttpContext.Session.
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return pDTO;
+            }
+            else
+            {
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
         }
 
     }
