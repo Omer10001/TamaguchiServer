@@ -89,7 +89,7 @@ namespace TamaguchiServer.Controllers
             {
                 PlayerDTO pDTO = new PlayerDTO(p);
 
-                HttpContext.Session.
+                HttpContext.Session.SetObject("player", pDTO);
 
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
                 return pDTO;
