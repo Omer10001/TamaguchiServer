@@ -11,6 +11,9 @@ namespace TamaguchiServer.DataTransferObjects
         {
 
         }
+        public int PlayerId { get; set; }
         public string Email { get; set; }
+
+        public string UserPassword { get; set; }
     }
 }
