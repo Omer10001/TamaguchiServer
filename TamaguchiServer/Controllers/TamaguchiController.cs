@@ -56,9 +56,8 @@ namespace TamaguchiServer.Controllers
             }
 
         }
-        [Route("DoExercise")]
-
-        [HttpPost]
+        [Route("DoExercise")]     
+        [HttpPost] 
         public void DoExercise([FromBody] ExerciseDTO exDTO)
         {
             try
