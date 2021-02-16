@@ -56,9 +56,9 @@ namespace TamaguchiServer.Controllers
             }
 
         }
-        [Route("DoExercise")]     
-  
-        [HttpPost] 
+        [Route("DoExercise")]
+
+        [HttpPost]
         public void DoExercise([FromBody] ExerciseDTO exDTO)
         {
             try
@@ -108,12 +108,12 @@ namespace TamaguchiServer.Controllers
         {
 
 
-            
+
             PlayerDTO playerDTO = HttpContext.Session.GetObject<PlayerDTO>("player");
             if (playerDTO != null)
             {
 
-                this.context.CreateAnimal(petDTO.PetName,playerDTO.PlayerId);
+                this.context.CreateAnimal(petDTO.PetName, playerDTO.PlayerId);
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
 
 
@@ -126,23 +126,20 @@ namespace TamaguchiServer.Controllers
 
             }
 
-                       
-            
-            
-            
 
 
-        public void AddAnimal([FromBody] PetDTO pDTO, [FromBody] int playerID)
-        {           
-            PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
-            Pet newAnimal = context.Pets.Where(x => x.PetId == pDTO.PetId).FirstOrDefault();
-            List<PetDTO> petListDTO = new List<PetDTO>();
+
+
+
+
+            //public void AddAnimal([FromBody] PetDTO pDTO, [FromBody] int playerID)
+            //{
+            //    PlayerDTO pDto = HttpContext.Session.GetObject<PlayerDTO>("player");
+            //    Pet newAnimal = context.Pets.Where(x => x.PetId == pDTO.PetId).FirstOrDefault();
+            //    List<PetDTO> petListDTO = new List<PetDTO>();
+            //}
+
+
         }
 
-
-    }
-   
-
-
-
-}
+ }  }
