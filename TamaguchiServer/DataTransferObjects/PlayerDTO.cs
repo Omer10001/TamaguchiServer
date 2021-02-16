@@ -28,7 +28,7 @@ namespace TamaguchiServer.DataTransferObjects
             LastName = p.LastName;
             Email = p.Email;
             Gender = p.Gender;
-            BirthDate = p.BirthDate;
+            BirthDate = (DateTime)p.BirthDate;
             UserName = p.UserName;
             UserPassword = p.UserPassword;
         }
