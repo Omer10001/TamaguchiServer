@@ -67,7 +67,7 @@ namespace TamaguchiServer.Controllers
                 if (pDto != null)
                 {
                     Exercise ex = context.Exercises.Where(x => x.ExerciseId == exDTO.ExerciseId).FirstOrDefault();
-                    Player p = context.Players.Where(pl => pl.PlayerId == pDto.PlayerId).FirstOrDefault();
+                    Player p = context.Players.Where(pl => pl.PlayerId == pDto.PlayerID).FirstOrDefault();
                     p.CurrentPet.DoExersice(ex);
                     Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
                 }
@@ -79,25 +79,59 @@ namespace TamaguchiServer.Controllers
                 Response.StatusCode = (int)System.Net.HttpStatusCode.NotFound;
             }
         }
-        public PlayerDTO Login([FromQuery] string email, [FromQuery] string pass)
+        [Route("Login")]
+        [HttpPost]
+        public PlayerDTO Login([FromBody] PlayerDTO login)
         {
-            Player p = context.Login(email, pass);
-
-            //Check user name and password
-            if (p != null)
+            try
             {
-                PlayerDTO pDTO = new PlayerDTO(p);
+                Player p = context.Login(login.Email, login.UserPassword);
 
-                HttpContext.Session.SetObject("player", pDTO);
+                //Check user name and password
+                if (p != null)
+                {
+                    PlayerDTO pDTO = new PlayerDTO(p);
 
-                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
-                return pDTO;
+                    HttpContext.Session.SetObject("player", pDTO);
+
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                    return pDTO;
+                }
+                else
+                {
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                    return null;
+                }
             }
-            else
+            catch
             {
-                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
                 return null;
             }
+        }
+        [Route("SignUp")]
+        [HttpPost]
+        public void SignUp([FromBody] PlayerDTO p)
+        {
+            try
+            {
+                Player checkEmail = context.Players.Where(x => x.Email == p.Email).FirstOrDefault();
+                if (checkEmail != null)
+                {
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.Conflict;
+                    return;
+                }
+                context.CreateUser(p.FirstName, p.LastName, p.Email, p.Gender, p.BirthDate, p.UserName, p.UserPassword);
+                HttpContext.Session.SetObject("player", p);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return;
+            }
+           catch(Exception e)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return;
+            }
+
         }
 
         [Route("AddAnimal")]
@@ -112,7 +146,7 @@ namespace TamaguchiServer.Controllers
             if (playerDTO != null)
             {
 
-                this.context.CreateAnimal(petDTO.PetName, playerDTO.PlayerId);
+                this.context.CreateAnimal(petDTO.PetName, playerDTO.PlayerID);
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
 
 
