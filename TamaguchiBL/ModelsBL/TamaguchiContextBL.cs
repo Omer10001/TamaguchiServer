@@ -41,9 +41,10 @@ namespace TamaguchiBL.Models
                 HealthStatusId = 1,
                 LifeCycleStageId = 1,
             };
-            this.Pets.Add(pet);           
-            this.SaveChanges();
             this.Players.Where(x => x.PlayerId == playerId).FirstOrDefault().CurrentPetId = pet.PetId;
+   
+            
+            this.Pets.Add(pet);
             this.SaveChanges();
         }
         public void CreateUser(string firstName, string lastName, string eMali, string gender, DateTime birthDate, string userName, string userPassword)
@@ -82,6 +83,19 @@ namespace TamaguchiBL.Models
                 PetLifeCycleStageId = p.LifeCycleStageId
             };
             this.PlayerMethodsHistories.Add(r);
+            this.SaveChanges();
+        }
+        public bool IsPetDead(Player p)
+        {
+            var player = this.Players.Where(x => x.PlayerId == p.PlayerId).Include(y => y.Pets).FirstOrDefault();
+            if (player.CurrentPetId == null) //if the player doesn't have a current pet, return true.
+                return true;
+            return player.CurrentPet.HealthStatusId == 4;
+           
+        }
+        public void DoExercise(Pet p, Exercise ex)
+        {
+            p.DoExersice(ex);
             this.SaveChanges();
         }
 

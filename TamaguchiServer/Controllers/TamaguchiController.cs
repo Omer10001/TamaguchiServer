@@ -68,7 +68,7 @@ namespace TamaguchiServer.Controllers
                 {
                     Exercise ex = context.Exercises.Where(x => x.ExerciseId == exDTO.ExerciseId).FirstOrDefault();
                     Player p = context.Players.Where(pl => pl.PlayerId == pDto.PlayerID).FirstOrDefault();
-                    p.CurrentPet.DoExersice(ex);
+                    this.context.DoExercise(p.CurrentPet, ex);
                     Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
                 }
                 else
@@ -174,5 +174,23 @@ namespace TamaguchiServer.Controllers
 
 
         }
+        [Route("IsPetDead")]
+        [HttpGet]
+        public bool IsPetDead()
+        {
+            PlayerDTO playerDTO = HttpContext.Session.GetObject<PlayerDTO>("player");
+            if (playerDTO != null)
+            {
+                Player p = this.context.Players.Where(x => x.PlayerId == playerDTO.PlayerID).FirstOrDefault();
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return this.context.IsPetDead(p);
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return false;
+            }
+        }
+
 
  }  }

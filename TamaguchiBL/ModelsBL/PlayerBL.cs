@@ -25,15 +25,16 @@ namespace TamaguchiBL.Models
                 
             }
         }
-        public bool IsPetDead()
-        {
-            using (var db = new TamaguchiContext())
-            {
-                var player = db.Players.Where(p => p.PlayerId == this.PlayerId).Include(x => x.Pets).FirstOrDefault();
-                if (player.CurrentPetId == null) //if the player doesn't have a current pet, return true.
-                    return true;
-                return player.CurrentPet.HealthStatusId == 4;
-            }
-        }
+        //public bool IsPetDead()
+        //{
+        //    var db = new TamaguchiContext();
+        //    //using (var db = new TamaguchiContext())
+        //    //{
+        //        var player = db.Players.Where(p => p.PlayerId == this.PlayerId).Include(x => x.Pets).FirstOrDefault();
+        //        if (player.CurrentPetId == null) //if the player doesn't have a current pet, return true.
+        //            return true;
+        //        return player.CurrentPet.HealthStatusId == 4;
+        //    //}
+        //}
     }
 }

@@ -21,10 +21,10 @@ namespace TamaguchiBL.Models
             {
                 this.CleanLevel += levelAffect;
             }
-            using (var db = new TamaguchiContext())
-            {
-                db.SaveChanges();
-            }
+            //using (var db = new TamaguchiContext())
+            //{
+            //    db.SaveChanges();
+            //}
         }
     }
 }

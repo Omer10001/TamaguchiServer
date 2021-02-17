@@ -17,8 +17,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TamaguchiServer
 {
-    //test1
-//gigiugiuhiu
+   
     public class Startup
     {
         public Startup(IConfiguration configuration)

@@ -24,6 +24,7 @@ namespace TamaguchiServer.DataTransferObjects
         public string UserPassword { get; set; }
         public PlayerDTO(Player p)
         {
+            PlayerID = p.PlayerId;
             FirstName = p.FirstName;
             LastName = p.LastName;
             Email = p.Email;
